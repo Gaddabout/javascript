@@ -1,0 +1,296 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<title>Matt's Custom Drum Shop</title>
+  <meta name="description" content="Matt's Custom Drum Shop">
+  <meta name="author" content="MDS">
+  
+<link type="text/css" href="styles/main.css" rel="stylesheet" />
+<link type="text/css" href="styles/menubar.css" rel="stylesheet" />
+<link rel="stylesheet" href="styles/screen.css">
+<script type="text/javascript" src="scripts/jslib_dom_ready.js"></script>
+<script type="text/javascript" src="scripts/jslib_event.js"></script>
+<script type="text/javascript" src="scripts/jslib_css.js"></script>
+<script type="text/javascript" src="scripts/menubar_library.js"></script>
+<script type="text/javascript" src="scripts/menubar.js"></script>
+<script type="text/javascript" src="scripts/balance.js"></script>
+<script language="javascript" type="text/javascript">
+<!--
+function popitup(url) {
+	newwindow=window.open(url,'name','height=250,width=350');
+	if (window.focus) {newwindow.focus()}
+	return false;
+}
+
+// -->
+</script>
+
+</head>
+
+<body>
+<div id="content">
+    <h1 class="center">Matt's Drum Shop</h1>
+    <div class="menubar" id="menubar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="carousel.html" menu="productmenu">Products</a></li>
+            <li><a href="script.html">Javascript</a></li>
+            <li><a href="form.html">Contact Us</a></li>
+        </ul>
+    </div>
+<!--    <div id="feat_products">
+        <p id="np_head">Featured Products</p>
+        <ul>
+        <li><a href="imgs/solid-shell.jpg" data-lightbox="example-set">Solid-Shell Snare</a></li>
+        <li><a href="imgs/stave-shell.jpg" data-lightbox="example-set">Stave-Shell Snare</a></li>
+        <li><a href="imgs/african-mahogany.jpg" data-lightbox="example-set">African Mahogany 8-Ply Snare</a></li>
+        <li><a href="imgs/kit.jpg" data-lightbox="example-set">Solid-Shell Kit</a></li>
+        </ul>
+    </div>
+    -->
+    <div>
+    <h1>The dance of arrays and functions</h1>
+    <p>My favorite lesson in this year's Javascript class was Chapter 10. The project, a Monthly Balance Calculator that maintains a running balance, opened my eyes to how Javascript uses arrays and functions in a partnership to move data back and forth between user and script.</p>
+    <p>It wasn't the most elegant or beautiful project we did this year, but it helped resolve my angst. Once I saw how it worked I realized I could actually do this -- it was a confidence builder</p>
+    
+<i><a href="#more">Click here to continue reading</a></i>
+
+
+    
+        <h3>Monthly Balance Calculator</h3><br>
+
+        <h4>Add Transaction</h4>
+        <hr>
+        <br>
+
+        <div class="formLayout" onsubmit="return ValidateForm()">
+            <label for="date">Date:</label> <input id="date" maxlength="10"
+            name="txtDate" size="15" type="text"><br>
+            <br>
+            <label for="type">Type:</label> <select id="type" name="type">
+                <!--<optgroup label="Type">-->
+
+                <option value="withdrawal">
+                    Withdrawal
+                </option>
+
+                <option value="deposit">
+                    Deposit
+                </option><!--</optgroup>-->
+            </select><br>
+            <label for="amount">Amount:</label> <input id="amount" name=
+            "amount" type="text"><br>
+            <br>
+            <label>&nbsp;</label> <input id="addTrans" type="button" value=
+            "Add Transaction"><br>
+        </div>
+
+        <h2>Transactions</h2>
+        <hr>
+        <br>
+        <!-- Textarea below is set up to receive the results of the JavaScript -->
+         
+        <textarea cols="60" disabled="disabled" id="results" name="results"
+        rows="10">
+</textarea><br>
+        <br>
+
+        <h2>Summary</h2>
+        <hr>
+        <br>
+
+        <div class="formLayout">
+            <label for="startBal">Starting Balance:</label> <input class=
+            "disabled" disabled="disabled" id="startBal" name="startBal" type=
+            "text"><br>
+            <br>
+            <label for="totalDep">Total Deposits:</label> <input class=
+            "disabled" disabled="disabled" id="totalDep" name="totalDep" type=
+            "text"><br>
+            <br>
+            <label for="totalWd">Total Withdrawals:</label> <input class=
+            "disabled" disabled="disabled" id="totalWd" name="totalWd" type=
+            "text"><br>
+            <br>
+            <label for="endBal">Ending Balance</label> <input class="disabled"
+            disabled="disabled" id="endBal" name="endBal" type="text"><br>
+            <br>
+        </div>
+        
+        <a name="more">
+        <p>As you can see above, the calculator looks simple enough, but lurking behind it is a web of arrays storing input, processing it, and sending it back in a modified form.</p>
+        
+		<p>First you need to establish variables and set them to arrays, to store data the user will input. These will be baseline arrays the program will use to pass data through the operations.</p>
+		
+<pre>        
+var balances = [];
+var transactions = [];
+
+var $ = function (id) {
+    return document.getElementById(id);
+}
+</pre>
+
+		<p>Then you need to gather user input. One function can handle all of the input for the four possible inputs we've asked the user to give us. The second function pushes more data through the transaction array.</p>
+
+<pre>
+var update_display = function() {
+	$("startBal").value = get_startBal(transactions);
+	$("totalDep").value = get_totalDep(transactions);
+	$("totalWd").value = get_totalWd(transactions);
+	$("endBal").value = get_endBal(transactions);
+	
+	$("date").value = "";
+	$("amount").value = "";
+	
+	$("date").focus();
+	
+	$("results").value = getResults(transactions);
+}
+
+var addTrans_click = function () {
+	var trans = [];
+	trans["date"] = $("date").value;
+	trans["amount"] = parseFloat($("amount").value);
+	trans["type"] = $("type").value;
+	
+	if (trans["date"] == "") return;
+	if (isNaN(trans["amount"])) return;
+		
+	transactions.push(trans);
+	update_display(); 
+}
+</pre>
+
+	<p>Now you can calculate and begin delivering data back to the user, but don't forget to format it, which is what the first two functions are handling. Notice the <i>while loop</i> checking for length and formatting the result as the strings are delivered.</p>
+
+<pre>
+var pad_left = function(text, width, pad) { 
+	var result = text.toString();
+	while (result.length < width) {
+		result = pad + result;
+	}
+	return result; 
+}
+
+var pad_right = function(text, width, pad) { 
+	var result = text.toString();
+	while (result.length < width) {
+		result = result + pad;
+	}
+	return result;  
+}
+</pre>
+	<p>And here is our calculation for the results, processed through a simple <i>if loop</i>.</p>
+	
+<pre>
+var getResults = function(results) { 
+	if (results.length == 0) {
+		return "";
+	}
+</pre>
+
+	<p>Now we can format for the textfield. As the data is formatted, it's run through
+	a <i>for loop</i> that adjusts for the initial withdrawal.</p>
+
+<pre>
+	var balance = 2000;  
+	var list = pad_right("Date", 12, " ");
+	list += pad_right("Amount", 12, " ");
+	list += pad_right("Running Balance", 15, " ") + "\n";
+	list += pad_right("", 11, "-") + " ";
+	list += pad_right("", 11, "-") + " ";
+	list += pad_right("", 15, "-") + "\n";
+	
+	for (var i = 0; i < results.length; i++) {  
+ 		var trans = results[i];
+		list += pad_right(trans["date"], 12, " ");
+		if(trans["type"] == "withdrawal") 
+		{
+			balance -= trans["amount"]
+			list += "$" + pad_left( "-" + trans["amount"].toFixed(2), 11, " ") + " ";
+		} else { //for Deposits
+			balance += trans["amount"]
+			list += "$" + pad_left( trans["amount"].toFixed(2), 11, " ") + " ";
+		}
+				
+		list += "$" + pad_left(balance.toFixed(2), 14, " ") + "\n";		
+	}
+	return list;
+}
+</pre>
+
+	<p>Here we need some additional functions to run further operations as the user inputs more data. The data in the arrays will be adjusted with four <i>for loops</i>, one for the balance, one for the number of deposits, one for number of withdrawals and a final loop for the ending balance.</p>
+
+<pre>
+// This function tracks the running balance
+var get_runningBalance = function(results) { 
+	var runningBalance = 0, amount;
+	for (var i in results) {
+		runningBalance =  startBal - "amount" ;
+		runningBalance += parseInt(runningBalance.toFixed(2));
+	}
+	return runningBalance;
+}
+
+var get_startBal = function(transactions){ 
+	return 2000;
+}
+
+// Counting total deposits here
+var get_totalDep = function(transactions){  
+	var totalDep = 0;
+	for(var i = 0; i < transactions.length; i++){
+		var trans = transactions[i];
+		if(trans["type"] == "deposit")
+		{
+			totalDep += trans["amount"]
+		}
+	}
+	return totalDep;
+}
+
+// Counting total withdrawals here
+var get_totalWd = function(transactions){ 
+	var totalWd = 0;
+	for(var i = 0; i < transactions.length; i++){
+		var trans = transactions[i];
+		if(trans["type"] == "withdrawal")
+		{
+			totalWd -= trans["amount"]
+		}
+	}
+	return totalWd;
+}
+
+// Calculating ending balance here
+var get_endBal = function(transactions){ 
+	var balance = 2000;
+	for(var i = 0; i < transactions.length; i++){
+		var trans = transactions[i];
+		if(trans["type"] == "withdrawal")
+		{
+			balance -= trans["amount"]
+		} else { //Is Deposit
+			balance += trans["amount"]
+		}
+	}
+	return balance.toFixed(2);
+}
+</pre>
+
+<p>This project was a "lightbulb" moment for me. As I began to understand how arrays worked with functions, I could see how the script could unfold and operate. I look back now and see how it might be shortened, but having all of these functions separated out helped me grasp logic of the entanglement of storing data in arrays and delivering them through processes for calculation and formatting. It was a long-held mystery solved for me.</p>
+
+</div>
+    <div class="dropmenu" id="productmenu">
+        <ul>
+            <li><a href="imgs/solid-shell.jpg" onclick="return popitup('imgs/solid-shell.jpg')">Solid Shells</a></li>
+            <li><a href="imgs/stave-shell.jpg" onclick="return popitup('imgs/stave-shell.jpg')">Stave Shells</a></li>
+            <li><a href="imgs/kit.jpg" onclick="return popitup('imgs/kit.jpg')">Kits</a></li>
+        </ul>
+    </div>
+
+</body>
+</html>

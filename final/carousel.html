@@ -1,0 +1,70 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<title>Matt's Custom Drum Shop</title>
+  <meta name="description" content="Matt's Custom Drum Shop">
+  <meta name="author" content="MDS">
+  
+<link type="text/css" href="styles/main.css" rel="stylesheet" />
+<link type="text/css" href="styles/menubar.css" rel="stylesheet" />
+<link type="text/css" href="styles/carousel.css" rel="stylesheet" />
+
+<script type="text/javascript" src="scripts/jslib_dom_ready.js"></script>
+<script type="text/javascript" src="scripts/jslib_event.js"></script>
+<script type="text/javascript" src="scripts/jslib_css.js"></script>
+<script type="text/javascript" src="scripts/menubar_library.js"></script>
+<script type="text/javascript" src="scripts/menubar.js"></script>
+<script type="text/javascript" src="scripts/jslib_event2.js"></script>
+<script type="text/javascript" src="scripts/jslib_event_mouse.js"></script>
+<script type="text/javascript" src="scripts/jslib_event_keyboard.js"></script>
+<script type="text/javascript" src="scripts/carousel_library.js"></script>
+<script type="text/javascript" src="scripts/carousel.js"></script>
+<script language="javascript" type="text/javascript">
+<!--
+function popitup(url) {
+	newwindow=window.open(url,'name','height=250,width=350');
+	if (window.focus) {newwindow.focus()}
+	return false;
+}
+
+// -->
+</script>
+
+</head>
+
+<body>
+<div id="content">
+    <h1 class="center">Matt's Custom Drum Shop</h1>
+    <div class="menubar" id="menubar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="carousel.html" menu="productmenu">Products</a></li>
+            <li><a href="script.html">Javascript</a></li>
+            <li><a href="form.html">Contact Us</a></li>
+        </ul>
+    </div>
+    <h2 class="center">Gallery of our Products</h2>
+    <div class="carousel" id="drum_pics">
+        <img src="imgs/solid-shell.jpg" alt="Solid-Shell Snare" />
+        <img src="imgs/stave-shell.jpg" alt="Stave-Shell Snare" />
+        <img src="imgs/african-mahogany.jpg" alt="African Mahogany Snare" />
+        <img src="imgs/kit.jpg" alt="Microkits" />
+    </div>
+    <ul class="instructions">
+        <li>Use CTRL-Left and CTRL-Right or move the mouse over the
+        carousel to spin the carousel.</li>
+        <li>Use CTRL-Up and CTRL-Down to tilt the carousel view.</li>
+        <li>Press ESC to pause/resume the carousel.</li>
+    </ul>
+</div>
+    <div class="dropmenu" id="productmenu">
+        <ul>
+            <li><a href="imgs/solid-shell.jpg" onclick="return popitup('imgs/solid-shell.jpg')">Solid Shells</a></li>
+            <li><a href="imgs/stave-shell.jpg" onclick="return popitup('imgs/stave-shell.jpg')">Stave Shells</a></li>
+            <li><a href="imgs/kit.jpg" onclick="return popitup('imgs/kit.jpg')">Kits</a></li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<title>Matt's Custom Drum Shop</title>
+  <meta name="description" content="Matt's Custom Drum Shop">
+  <meta name="author" content="MDS">
+  
+<link type="text/css" href="styles/main.css" rel="stylesheet" />
+<link type="text/css" href="styles/menubar.css" rel="stylesheet" />
+<script type="text/javascript" src="scripts/jslib_dom_ready.js"></script>
+<script type="text/javascript" src="scripts/jslib_event.js"></script>
+<script type="text/javascript" src="scripts/jslib_css.js"></script>
+<script type="text/javascript" src="scripts/menubar_library.js"></script>
+<script type="text/javascript" src="scripts/menubar.js"></script>
+<script type="text/javascript" src="scripts/form.js"></script>
+<script language="javascript" type="text/javascript">
+<!--
+function popitup(url) {
+	newwindow=window.open(url,'name','height=250,width=350');
+	if (window.focus) {newwindow.focus()}
+	return false;
+}
+
+// -->
+</script>
+
+</head>
+
+<body>
+<div id="content">
+    <h1 class="center">Matt's Drum Shop</h1>
+    <div class="menubar" id="menubar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="carousel.html" menu="productmenu">Products</a></li>
+            <li><a href="script.html">Javascript</a></li>
+            <li><a href="form.html">Contact Us</a></li>
+        </ul>
+    </div>
+<!--    <div id="feat_products">
+        <p id="np_head">Featured Products</p>
+        <ul>
+        <li><a href="imgs/solid-shell.jpg" data-lightbox="example-set">Solid-Shell Snare</a></li>
+        <li><a href="imgs/stave-shell.jpg" data-lightbox="example-set">Stave-Shell Snare</a></li>
+        <li><a href="imgs/african-mahogany.jpg" data-lightbox="example-set">African Mahogany 8-Ply Snare</a></li>
+        <li><a href="imgs/kit.jpg" data-lightbox="example-set">Solid-Shell Kit</a></li>
+        </ul>
+    </div>
+    -->
+    <section id="main1">
+    
+	<h1>Helps us help you</h1>
+	<p>We'd love to establish a relationship with you. Provide us with some simple information and we'll send you a gift.</p>
+
+<form name="drumForm" action"" method="get">
+<fieldset>
+	<label for="fname">First Name:</label>
+	<input type="text" id="fname" name="fname" tabindex="1" required />  <br/><br/>
+	<label for="lname">Last Name:</label>
+	<input type="text" id="lname" name="lname" tabindex="1" required /> <br/><br/>
+	<label for="email">Email Address:</label>
+	<input type="text" id="email" name="email" placeholder="me@example.com" tabindex="1" required /> <br/><br/>
+	<label for="dob">Date of Birth:</label>
+	<input type="text" id="dob" name="dob" placeholder="05/13/2015" pattern="\d{1,2}/\d{1,2}/\d{4}" tabindex="1" required /> <br/><br/>
+	<label for="zip">Address Zip Code:</label>
+	<input type="text" id="zip" name="zip" placeholder="85001" tabindex="1" required /> <br/><br/>
+	<label for="pnum">10-digit Phone Number:</label>
+	<input type="text" id="pnum" name="pnum" placeholder="602-555-0000" tabindex="1" required /><br/><br/>
+		<p>
+		<input type="button" value="Submit" tabindex="1" onClick="validation()"/>
+	</p>
+
+
+		<textarea name="results" id="results" rows="10" cols="60" disabled="disabled">
+		</textarea>
+		<br />
+		<br />
+	
+	</fieldset>
+</form>
+
+
+    </div>
+        <div class="dropmenu" id="productmenu">
+        <ul>
+            <li><a href="imgs/solid-shell.jpg" onclick="return popitup('imgs/solid-shell.jpg')">Solid Shells</a></li>
+            <li><a href="imgs/stave-shell.jpg" onclick="return popitup('imgs/stave-shell.jpg')">Stave Shells</a></li>
+            <li><a href="imgs/kit.jpg" onclick="return popitup('imgs/kit.jpg')">Kits</a></li>
+        </ul>
+    </div>
+
+</body>
+</html>
